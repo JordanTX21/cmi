@@ -2,6 +2,11 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\v1\PerspectiveController;
+use App\Http\Controllers\Api\v1\GoalController;
+use App\Http\Controllers\Api\v1\IndicatorController;
+use App\Http\Controllers\Api\v1\InitiativeController;
+use App\Http\Controllers\Api\v1\ObjectiveController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,4 +21,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+
+Route::group(['prefix' => 'v1'], function (){
+    Route::resource('/perspective', [PerspectiveController::class]);
+    Route::resource('/goal', [GoalController::class]);
+    Route::resource('/indicator', [IndicatorController::class]);
+    Route::resource('/initiative', [InitiativeController::class]);
+    Route::resource('/objective', [ObjectiveController::class]);
 });
