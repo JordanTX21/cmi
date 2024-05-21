@@ -14,8 +14,7 @@ Laravel is a web application framework with expressive, elegant syntax. We belie
 ## Setup
 
 ```
-cp .env.example
-cp .env
+cp .env.example .env
 npm install
 npm run build
 composer install

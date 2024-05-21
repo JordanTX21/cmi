@@ -25,9 +25,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 Route::group(['prefix' => 'v1'], function (){
-    Route::resource('/perspective', [PerspectiveController::class]);
-    Route::resource('/goal', [GoalController::class]);
-    Route::resource('/indicator', [IndicatorController::class]);
-    Route::resource('/initiative', [InitiativeController::class]);
-    Route::resource('/objective', [ObjectiveController::class]);
+    Route::resource('/perspective', PerspectiveController::class);
+    Route::resource('/goal', GoalController::class);
+    Route::resource('/indicator', IndicatorController::class);
+    Route::resource('/initiative', InitiativeController::class);
+    Route::resource('/objective', ObjectiveController::class);
 });
