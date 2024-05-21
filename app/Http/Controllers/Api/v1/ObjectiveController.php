@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\v1;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Objective;
 
 class ObjectiveController extends Controller
 {
@@ -13,6 +14,7 @@ class ObjectiveController extends Controller
     public function index()
     {
         //
+        return Objective::all();
     }
 
     /**
@@ -29,6 +31,7 @@ class ObjectiveController extends Controller
     public function store(Request $request)
     {
         //
+        return Objective::create($request->all());
     }
 
     /**
@@ -37,6 +40,7 @@ class ObjectiveController extends Controller
     public function show(string $id)
     {
         //
+        return Objective::findOrFail($id);
     }
 
     /**
@@ -45,6 +49,7 @@ class ObjectiveController extends Controller
     public function edit(string $id)
     {
         //
+
     }
 
     /**
@@ -53,6 +58,9 @@ class ObjectiveController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $objective = Objective::findOrFail($id);
+        $objective->update($request->all());
+        return $objective;
     }
 
     /**
@@ -61,5 +69,8 @@ class ObjectiveController extends Controller
     public function destroy(string $id)
     {
         //
+        $objective = Objective::findOrFail($id);
+        $objective->delete();
+        return 204;
     }
 }

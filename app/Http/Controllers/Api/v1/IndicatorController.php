@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\v1;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Indicator;
 
 class IndicatorController extends Controller
 {
@@ -13,6 +14,7 @@ class IndicatorController extends Controller
     public function index()
     {
         //
+        return Indicator::all();
     }
 
     /**
@@ -21,6 +23,7 @@ class IndicatorController extends Controller
     public function create()
     {
         //
+
     }
 
     /**
@@ -29,6 +32,7 @@ class IndicatorController extends Controller
     public function store(Request $request)
     {
         //
+        return Indicator::create($request->all());
     }
 
     /**
@@ -37,6 +41,7 @@ class IndicatorController extends Controller
     public function show(string $id)
     {
         //
+        return Indicator::findOrFail($id);
     }
 
     /**
@@ -53,6 +58,10 @@ class IndicatorController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $indicator = Indicator::findOrFail($id);
+        $indicator->update($request->all());
+        return $indicator;
+
     }
 
     /**
@@ -61,5 +70,8 @@ class IndicatorController extends Controller
     public function destroy(string $id)
     {
         //
+        $indicator = Indicator::findOrFail($id);
+        $indicator->delete();
+        return 204;
     }
 }

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api\v1;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use App\Models\Perspective;
 class PerspectiveController extends Controller
 {
     /**
@@ -13,6 +13,7 @@ class PerspectiveController extends Controller
     public function index()
     {
         //
+        return Perspective::all();
     }
 
     /**
@@ -29,6 +30,7 @@ class PerspectiveController extends Controller
     public function store(Request $request)
     {
         //
+        return Perspective::create($request->all());
     }
 
     /**
@@ -37,6 +39,7 @@ class PerspectiveController extends Controller
     public function show(string $id)
     {
         //
+        return Perspective::findOrFail($id);
     }
 
     /**
@@ -53,6 +56,9 @@ class PerspectiveController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $perspective = Perspective::findOrFail($id);
+        $perspective->update($request->all());
+        return $perspective;
     }
 
     /**
@@ -61,5 +67,8 @@ class PerspectiveController extends Controller
     public function destroy(string $id)
     {
         //
+        $perspective = Perspective::findOrFail($id);
+        $perspective->delete();
+        return 204;
     }
 }

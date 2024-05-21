@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\v1;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Goal;
 
 class GoalController extends Controller
 {
@@ -13,6 +14,7 @@ class GoalController extends Controller
     public function index()
     {
         //
+        return Goal::all();
     }
 
     /**
@@ -29,6 +31,7 @@ class GoalController extends Controller
     public function store(Request $request)
     {
         //
+        return Goal::create($request->all());
     }
 
     /**
@@ -37,6 +40,8 @@ class GoalController extends Controller
     public function show(string $id)
     {
         //
+        return Goal::findOrFail($id);
+
     }
 
     /**
@@ -53,6 +58,9 @@ class GoalController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $goal = Goal::findOrFail($id);
+        $goal->update($request->all());
+        return $goal;
     }
 
     /**
@@ -61,5 +69,8 @@ class GoalController extends Controller
     public function destroy(string $id)
     {
         //
+        $goal = Goal::findOrFail($id);
+        $goal->delete();
+        return 204;
     }
 }

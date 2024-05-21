@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\v1;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Initiative;
 
 class InitiativeController extends Controller
 {
@@ -13,6 +14,7 @@ class InitiativeController extends Controller
     public function index()
     {
         //
+        return Initiative::all();
     }
 
     /**
@@ -29,6 +31,8 @@ class InitiativeController extends Controller
     public function store(Request $request)
     {
         //
+        return Initiative::create($request->all());
+
     }
 
     /**
@@ -37,6 +41,8 @@ class InitiativeController extends Controller
     public function show(string $id)
     {
         //
+        return Initiative::findOrFail($id);
+
     }
 
     /**
@@ -53,6 +59,9 @@ class InitiativeController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $initiative = Initiative::findOrFail($id);
+        $initiative->update($request->all());
+        return $initiative;
     }
 
     /**
@@ -61,5 +70,8 @@ class InitiativeController extends Controller
     public function destroy(string $id)
     {
         //
+        $initiative = Initiative::findOrFail($id);
+        $initiative->delete();
+        return 204;
     }
 }
